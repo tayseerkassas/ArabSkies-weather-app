@@ -1,0 +1,39 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services" // ← نقلتها ضمن plugins (أنظف و أفضل في DSL الحديثة)
+}
+
+android {
+    namespace = "com.example.weather_app"
+    compileSdk = 35 // ← رفعتها من flutter.compileSdkVersion إلى 35 مباشرة
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.weather_app"
+        minSdk = 23    // ← رفعتها من flutter.minSdkVersion إلى 23
+        targetSdk = 35 // ← رفعتها من flutter.targetSdkVersion إلى 35
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
